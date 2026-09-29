@@ -1,0 +1,10 @@
+LIBRARY dxgi
+EXPORTS
+    CreateDXGIFactory=Proxy_CreateDXGIFactory
+    CreateDXGIFactory1=Proxy_CreateDXGIFactory1
+    CreateDXGIFactory2=Proxy_CreateDXGIFactory2
+    DXGIDeclareAdapterRemovalSupport=Proxy_DXGIDeclareAdapterRemovalSupport
+    DXGIDisableVBlankVirtualization=Proxy_DXGIDisableVBlankVirtualization
+    DXGIGetDebugInterface=Proxy_DXGIGetDebugInterface
+    DXGIGetDebugInterface1=Proxy_DXGIGetDebugInterface1
+    DXGIReportAdapterConfiguration=Proxy_DXGIReportAdapterConfiguration

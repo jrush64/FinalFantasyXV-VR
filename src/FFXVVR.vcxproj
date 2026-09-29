@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A745E2C1-6A10-4CB8-A28C-47CE973CA78A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>FFXVVR</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <TargetName>dxgi</TargetName>
+    <OutDir>$(ProjectDir)..\builds\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\third_party\openxr\include;$(ProjectDir)..\third_party\imgui;$(ProjectDir)..\third_party\imgui\backends;$(ProjectDir)..\third_party\minhook\include;$(ProjectDir)..\third_party\DLSS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>dxgi_proxy.def</ModuleDefinitionFile>
+      <AdditionalOptions>/PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>user32.lib;imm32.lib;d3dcompiler.lib;$(ProjectDir)..\third_party\DLSS\lib\Windows_x86_64\x64\nvsdk_ngx_s_dbg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\third_party\openxr\include;$(ProjectDir)..\third_party\imgui;$(ProjectDir)..\third_party\imgui\backends;$(ProjectDir)..\third_party\minhook\include;$(ProjectDir)..\third_party\DLSS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;NOMINMAX;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>dxgi_proxy.def</ModuleDefinitionFile>
+      <AdditionalOptions>/PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>user32.lib;imm32.lib;d3dcompiler.lib;$(ProjectDir)..\third_party\DLSS\lib\Windows_x86_64\x64\nvsdk_ngx_s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="aer_menu.cpp" />
+    <ClCompile Include="display_spoof.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stereo_task_fix.cpp" />
+    <ClCompile Include="openxr_presenter.cpp" />
+    <ClCompile Include="present_profiler.cpp" />
+    <ClCompile Include="fps_ab_probe.cpp" />
+    <ClCompile Include="gbuffer_census.cpp" />
+    <ClCompile Include="afw_synth.cpp" />
+    <ClCompile Include="gpu_pose_trace.cpp" />
+    <ClCompile Include="native_draw_pose.cpp" />
+    <ClCompile Include="scene_census.cpp" />
+    <ClCompile Include="ui_hook.cpp" />
+    <ClCompile Include="dlss_probe.cpp" />
+    <ClCompile Include="dlss_upscaler.cpp" />
+    <ClCompile Include="..\third_party\minhook\src\buffer.c" />
+    <ClCompile Include="..\third_party\minhook\src\hook.c" />
+    <ClCompile Include="..\third_party\minhook\src\trampoline.c" />
+    <ClCompile Include="..\third_party\minhook\src\hde\hde64.c" />
+    <ClCompile Include="..\third_party\imgui\imgui.cpp" />
+    <ClCompile Include="..\third_party\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\third_party\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\third_party\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\third_party\imgui\backends\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\third_party\imgui\backends\imgui_impl_win32.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aer_control.h" />
+    <ClInclude Include="aer_menu.h" />
+    <ClInclude Include="openxr_presenter.h" />
+    <ClInclude Include="runtime_log.h" />
+    <ClInclude Include="fps_ab_probe.h" />
+    <ClInclude Include="gbuffer_census.h" />
+    <ClInclude Include="afw_synth.h" />
+    <ClInclude Include="gpu_pose_trace.h" />
+    <ClInclude Include="native_draw_pose.h" />
+    <ClInclude Include="stereo_task_fix.h" />
+    <ClInclude Include="scene_census.h" />
+    <ClInclude Include="ui_hook.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dxgi_proxy.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

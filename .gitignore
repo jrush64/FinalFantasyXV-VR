@@ -1,0 +1,26 @@
+# Build intermediates
+**/obj/
+**/bin/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.iobj
+*.ipdb
+
+# Local
+logs/
+dist/
+*.bak
+*.zip
+*.user
+*.suo
+.vs/
+zips/
+
+# NVIDIA DLSS SDK: downloaded separately, never committed (see BUILD.md)
+third_party/DLSS/
+
+# Logs written when the DLL is loaded for testing
+*.log
